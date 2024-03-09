@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  back:
+    build:
+      context: ./back
+      target: deploy
+    restart: always
+    volumes:
+      - ./back:/app
+  front:
+    build:
+      context: ./front
+    restart: always
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - nginx

@@ -3,6 +3,8 @@
 ```bash
 cd /nginx/ssl
 
+openssl genrsa 2048 > server.key
+
 openssl req -out server.csr -key server.key -new
 # 入力欄はすべてEnterでOK
 

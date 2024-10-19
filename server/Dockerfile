@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine as builder
+FROM golang:1.23-alpine as builder
 
 WORKDIR /app/
 
@@ -16,7 +16,7 @@ COPY --from=builder /app/app .
 
 CMD ["./app"]
 
-FROM golang:1.22 as dev
+FROM golang:1.23 as dev
 WORKDIR /app
-RUN go install github.com/cosmtrek/air@latest
+RUN go install github.com/air-verse/air@latest
 CMD ["air"]

@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   nginx:
     image: nginx
@@ -8,15 +6,16 @@ services:
     volumes:
       - ./nginx:/etc/nginx
     depends_on:
-      - back
+      - server
       - front
-  back:
+  server:
     build:
-      context: ./back
+      context: ./server
       target: dev
     restart: always
     volumes:
-      - ./back:/app
+      - ./server:/app
+
   front:
     build:
       context: ./front
